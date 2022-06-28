@@ -1,36 +1,23 @@
 import Vuex from 'vuex'
+//import CreatePersistedState from "vuex-persistedstate"
 
-const createStore = () => {
-	return new Vuex.Store({
-		state: function(){
-			return {
-				message: 'count number',
-				counter: 0,
-			};
-		},
-		mutations: {
-			count: function(state,obj){
-				state.message = obj.message;
-				state.counter += obj.add;
-			},
-			add:function(state,n){
-				state.counter += n
-			},
-			say:function(state,msg){
-				state.message=msg;
-			},
-			reset: function(state){
-				state.counter=0;
-			}
-		},
-		actions:{
-			doit:function(context){
-				var n= Math.floor(Math.random() * 10)
-				context.commit('add',n);
-				context.commit('say','add ' + n + '!');
-			}
-		}
-	})
+export const state = ()=>({
+	message: 'count number.',
+	couter:0,
+})
+
+export const mutations =  {
+	doit(state){
+		var n = Math.floor(Math.random());
+		state.counter += n;
+		state.message = 'add ' + n + '.';
+	},
+	reset(){
+		state.counter = 0;
+		state.message = "reset now.";
+	}
 }
 
-export default createStore
+//export const plugins = [
+//	CreatePersistedState(),/
+//]
